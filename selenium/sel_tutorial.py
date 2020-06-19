@@ -13,7 +13,7 @@ print(driver.title)
 search = driver.find_element_by_name('s')
 search.clear()
 search.send_keys("python", Keys.RETURN)
-# print(driver.page_source)
+
 try:
     main = WebDriverWait(driver, 20).until(
         EC.presence_of_element_located((By.ID, "main"))
@@ -23,9 +23,9 @@ try:
     for page in pages:
         pg.append(page.get_attribute('text'))
     last_page = int(pg[-2]) #grab the last page number and convert to int
-    j = 1  #create a while loop to go thru all the pages with a searching result regarding python
+    j = 1  #create a while loop to go thru all the pages with a searching result python
     while j <= last_page:
-        main = WebDriverWait(driver, 30).until(
+        main = WebDriverWait(driver, 20).until(
             EC.presence_of_element_located((By.ID, "main"))
         ) # this main may be redundant, not sure
         articles = main.find_elements_by_tag_name("article")
@@ -43,19 +43,8 @@ try:
                 )
         element.click()
         j += 1
-#     driver.back()
-#     link = driver.find_element_by_link_text("Python Programming")
-#     link.click()
-#     element = WebDriverWait(driver, 10).until(
-#         EC.presence_of_element_located((By.LINK_TEXT, "Beginner Python Tutorials"))
-#     )
-#     element.click()
-#     element = WebDriverWait(driver, 10).until(
-#         EC.presence_of_element_located((By.ID, "sow-button-19310003"))
-#     )
-#     element.click()
 except:
     print('something is wrong')
-#How do I deal with the random ads page when I scraped the web page by page
+#How do I deal with the random ads page when I scraped the web page by page?
 
 
